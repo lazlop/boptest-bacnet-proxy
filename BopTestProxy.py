@@ -57,7 +57,7 @@ activation_signal = {}
 nextState = None
 g = None
 
-baseurl = "http://localhost:5000"
+baseurl = "http://boptest:5000"
 boptest_measurements = None
 boptest_inputs = None
 
@@ -187,7 +187,7 @@ def update_boptest_data():
             signals[activation_name] = 1.0
         
 
-    #print("Advancing with signals: " + str(signals))
+    print("Advancing with signals: " + str(signals))
     response = requests.post(
     #    "http://localhost:5000/advance", data={"oveAct_u": next_oveAct_u, "oveAct_activate": next_oveAct_activate}
         '{0}/advance'.format(baseurl), data=signals
