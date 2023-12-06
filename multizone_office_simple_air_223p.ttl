@@ -1,0 +1,316 @@
+@prefix bacnet: <http://data.ashrae.org/bacnet/2020#> .
+@prefix bldg: <urn:bldg/> .
+@prefix brick: <https://brickschema.org/schema/Brick#> .
+@prefix ref: <https://brickschema.org/schema/Brick/ref#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix om: <http://openmetrics.eu/openmetrics#> .
+@prefix s223: <http://data.ashrae.org/standard223#> .
+@prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+
+
+bldg:Building a brick:Building ;
+brick:hasPart 
+	bldg:hvac_cor_zone, 
+	bldg:hvac_eas_zone,
+	bldg:hvac_nor_zone,
+	bldg:hvac_sou_zone,	
+	bldg:hvac_wes_zone.
+
+bldg:hvac_cor_zone a s223:DomainSpace ;
+    s223:hasDomain s223:Domain-HVAC ;
+    s223:hasProperty
+        bldg:hvac_oveZonSupCor_TZonCooSet_u,
+        bldg:hvac_oveZonSupCor_TZonHeaSet_u,
+       	bldg:hvac_reaZonCor_TZon_y ,
+        bldg:LowerSetp_cor,
+        bldg:UpperSetp_cor,
+        bldg:occ_cor .
+
+bldg:hvac_eas_zone a s223:DomainSpace ;
+    s223:hasDomain s223:Domain-HVAC ;
+    s223:hasProperty
+        bldg:hvac_oveZonSupEas_TZonCooSet_u,
+        bldg:hvac_oveZonSupEas_TZonHeaSet_u,
+        bldg:hvac_reaZonEas_TZon_y ,
+        bldg:LowerSetp_eas,
+        bldg:UpperSetp_eas,
+        bldg:occ_eas .
+
+bldg:hvac_nor_zone a s223:DomainSpace ;
+    s223:hasDomain s223:Domain-HVAC ;
+    s223:hasProperty 
+        bldg:hvac_oveZonSupNor_TZonCooSet_u,
+        bldg:hvac_oveZonSupNor_TZonHeaSet_u,
+        bldg:hvac_reaZonNor_TZon_y ,
+	    bldg:LowerSetp_nor,
+	    bldg:UpperSetp_nor,
+        bldg:occ_nor .
+
+bldg:hvac_sou_zone a s223:DomainSpace ;
+    s223:hasDomain s223:Domain-HVAC ;
+    brick:hasPoint
+        bldg:hvac_oveZonSupSou_TZonCooSet_u,
+        bldg:hvac_oveZonSupSou_TZonHeaSet_u,
+        bldg:hvac_reaZonSou_TZon_y ,
+	    bldg:LowerSetp_sou,
+	    bldg:UpperSetp_sou,
+        bldg:occ_sou .
+
+bldg:hvac_wes_zone a s223:DomainSpace ;
+    s223:hasDomain s223:Domain-HVAC ;
+    s223:hasProperty
+        bldg:hvac_oveZonSupWes_TZonCooSet_u,
+        bldg:hvac_oveZonSupWes_TZonHeaSet_u,
+        bldg:hvac_reaZonWes_TZon_y ,
+	    bldg:LowerSetp_wes,
+	    bldg:UpperSetp_wes,
+        bldg:occ_wes .
+
+
+
+bldg:hvac_oveZonSupCor_TZonCooSet_u a s223:QuantifiableActuatableProperty ;
+    s223:hasAspect s223:Role-Cooling ;
+    s223:hasAspect s223:Aspect-Setpoint ;
+    qudt:hasUnit qudt:K ;
+    qudt:hasQuantityKind quantitykind:Temperature  ;
+    brick:hasLocation bldg:hvac_cor_zone ;
+    s223:hasProperty bldg:LowerSetp_cor ;
+    s223:hasProperty bldg:UpperSetp_cor ;
+    rdfs:label  "hvac_oveZonSupCor_TZonCooSet_u" .
+
+bldg:hvac_oveZonSupCor_TZonHeaSet_u a s223:QuantifiableActuatableProperty ;
+    s223:hasAspect s223:Role-Heating ;
+    s223:hasAspect s223:Aspect-Setpoint ;
+    qudt:hasUnit qudt:K ;
+    qudt:hasQuantityKind quantitykind:Temperature  ;
+    brick:hasLocation bldg:hvac_cor_zone ;
+    s223:hasProperty bldg:LowerSetp_cor ;
+    s223:hasProperty bldg:UpperSetp_cor ;
+    rdfs:label   "hvac_oveZonSupCor_TZonHeaSet_u" .
+
+bldg:hvac_oveZonSupEas_TZonCooSet_u a s223:QuantifiableActuatableProperty ;
+    s223:hasAspect s223:Role-Cooling ;
+    s223:hasAspect s223:Aspect-Setpoint ;
+    qudt:hasUnit qudt:K ;
+    qudt:hasQuantityKind quantitykind:Temperature  ;
+    brick:hasLocation bldg:hvac_eas_zone ;
+    s223:hasProperty bldg:LowerSetp_eas ;
+    s223:hasProperty bldg:UpperSetp_eas ;
+    rdfs:label   "hvac_oveZonSupEas_TZonCooSet_u" .
+
+bldg:hvac_oveZonSupEas_TZonHeaSet_u a s223:QuantifiableActuatableProperty ;
+    s223:hasAspect s223:Role-Heating ;
+    s223:hasAspect s223:Aspect-Setpoint ;
+    qudt:hasUnit qudt:K ;
+    qudt:hasQuantityKind quantitykind:Temperature  ;
+    brick:hasLocation bldg:hvac_eas_zone ;
+    s223:hasProperty bldg:LowerSetp_eas ;
+    s223:hasProperty bldg:UpperSetp_eas ;
+    rdfs:label   "hvac_oveZonSupEas_TZonHeaSet_u" .
+
+bldg:hvac_oveZonSupNor_TZonCooSet_u a s223:QuantifiableActuatableProperty ;
+    s223:hasAspect s223:Role-Cooling ;
+    s223:hasAspect s223:Aspect-Setpoint ;
+    qudt:hasUnit qudt:K ;
+    qudt:hasQuantityKind quantitykind:Temperature  ;
+    brick:hasLocation bldg:hvac_nor_zone ;
+    s223:hasProperty bldg:LowerSetp_nor ;
+    s223:hasProperty bldg:UpperSetp_nor ;
+    rdfs:label  "hvac_oveZonSupNor_TZonCooSet_u" .
+
+bldg:hvac_oveZonSupNor_TZonHeaSet_u a s223:QuantifiableActuatableProperty ;
+    s223:hasAspect s223:Role-Heating ;
+    s223:hasAspect s223:Aspect-Setpoint ;
+    qudt:hasUnit qudt:K ;
+    qudt:hasQuantityKind quantitykind:Temperature  ;
+    brick:hasLocation bldg:hvac_nor_zone ;
+    s223:hasProperty bldg:LowerSetp_nor ;
+    s223:hasProperty bldg:UpperSetp_nor ;
+    rdfs:label  "hvac_oveZonSupNor_TZonHeaSet_u" .
+
+bldg:hvac_oveZonSupSou_TZonCooSet_u a s223:QuantifiableActuatableProperty ;
+    s223:hasAspect s223:Role-Cooling ;
+    s223:hasAspect s223:Aspect-Setpoint ;
+    qudt:hasUnit qudt:K ;
+    qudt:hasQuantityKind quantitykind:Temperature  ;
+    brick:hasLocation bldg:hvac_sou_zone ;
+    s223:hasProperty bldg:LowerSetp_sou ;
+    s223:hasProperty bldg:UpperSetp_sou ;
+    rdfs:label  "hvac_oveZonSupSou_TZonCooSet_u" .
+
+bldg:hvac_oveZonSupSou_TZonHeaSet_u a s223:QuantifiableActuatableProperty ;
+    s223:hasAspect s223:Role-Heating ;
+    s223:hasAspect s223:Aspect-Setpoint ;
+    qudt:hasUnit qudt:K ;
+    qudt:hasQuantityKind quantitykind:Temperature  ;
+    brick:hasLocation bldg:hvac_sou_zone ;
+    s223:hasProperty bldg:LowerSetp_sou ;
+    s223:hasProperty bldg:UpperSetp_sou ;
+    rdfs:label   "hvac_oveZonSupSou_TZonHeaSet_u" .
+
+bldg:hvac_oveZonSupWes_TZonCooSet_u a s223:QuantifiableActuatableProperty ;
+    s223:hasAspect s223:Role-Cooling ;
+    s223:hasAspect s223:Aspect-Setpoint ;
+    qudt:hasUnit qudt:K ;
+    qudt:hasQuantityKind quantitykind:Temperature  ;
+    brick:hasLocation bldg:hvac_wes_zone ;
+    s223:hasProperty bldg:LowerSetp_wes ;
+    s223:hasProperty bldg:UpperSetp_wes ;
+    rdfs:label  "hvac_oveZonSupWes_TZonCooSet_u" .
+
+bldg:hvac_oveZonSupWes_TZonHeaSet_u a s223:QuantifiableActuatableProperty ;
+    s223:hasAspect s223:Role-Heating ;
+    s223:hasAspect s223:Aspect-Setpoint ;
+    qudt:hasUnit qudt:K ;
+    qudt:hasQuantityKind quantitykind:Temperature  ;
+    brick:hasLocation bldg:hvac_wes_zone ;
+    s223:hasProperty bldg:LowerSetp_wes ;
+    s223:hasProperty bldg:UpperSetp_wes ;
+    rdfs:label   "hvac_oveZonSupWes_TZonHeaSet_u" .
+
+
+
+
+bldg:hvac_reaZonWes_TZon_y a s223:QuantifiableObservableProperty ;
+    qudt:hasUnit qudt:K ;
+    qudt:hasQuantityKind quantitykind:Temperature  ;
+    brick:hasLocation bldg:hvac_wes_zone ;
+    s223:hasSetpoint bldg:hvac_oveZonSupWes_TZonCooSet_u ;
+    s223:hasSetpoint bldg:hvac_oveZonSupWes_TZonHeaSet_u ;
+    rdfs:label   "hvac_reaZonWes_TZon_y" .
+
+bldg:hvac_reaZonCor_TZon_y a s223:QuantifiableObservableProperty ;
+    qudt:hasUnit qudt:K ;
+    qudt:hasQuantityKind quantitykind:Temperature  ;
+    brick:hasLocation bldg:hvac_cor_zone ;
+    s223:hasSetpoint bldg:hvac_oveZonSupCor_TZonCooSet_u ;
+    s223:hasSetpoint bldg:hvac_oveZonSupCor_TZonHeaSet_u ;
+    rdfs:label  "hvac_reaZonCor_TZon_y" .
+
+bldg:hvac_reaZonEas_TZon_y a s223:QuantifiableObservableProperty ;
+    qudt:hasUnit qudt:K ;
+    qudt:hasQuantityKind quantitykind:Temperature  ;
+    brick:hasLocation bldg:hvac_eas_zone ;
+    s223:hasSetpoint bldg:hvac_oveZonSupEas_TZonCooSet_u ;
+    s223:hasSetpoint bldg:hvac_oveZonSupEas_TZonHeaSet_u ;
+    rdfs:label   "hvac_reaZonEas_TZon_y" .
+
+bldg:hvac_reaZonNor_TZon_y a s223:QuantifiableObservableProperty ;
+    qudt:hasUnit qudt:K ;
+    qudt:hasQuantityKind quantitykind:Temperature  ;
+    brick:hasLocation bldg:hvac_nor_zone ;
+    s223:hasSetpoint bldg:hvac_oveZonSupNor_TZonCooSet_u ;
+    s223:hasSetpoint bldg:hvac_oveZonSupNor_TZonHeaSet_u ;
+    rdfs:label   "hvac_reaZonNor_TZon_y" .
+
+bldg:hvac_reaZonSou_TZon_y a s223:QuantifiableObservableProperty ;
+    qudt:hasUnit qudt:K ;
+    qudt:hasQuantityKind quantitykind:Temperature  ;
+    brick:hasLocation bldg:hvac_sou_zone ;
+    s223:hasSetpoint bldg:hvac_oveZonSupSou_TZonCooSet_u ;
+    s223:hasSetpoint bldg:hvac_oveZonSupSou_TZonHeaSet_u ;
+    rdfs:label  "hvac_reaZonSou_TZon_y" .
+
+bldg:LowerSetp_wes a s223:QuantifiableProperty ;
+    s223:hasAspect s223:Aspect-Minimum ;
+    qudt:hasUnit qudt:K ;
+    qudt:hasQuantityKind quantitykind:Temperature  ;
+    brick:hasLocation bldg:hvac_wes_zone ;
+    rdfs:label   "LowerSetp[wes]" .
+
+bldg:LowerSetp_cor a s223:QuantifiableProperty ;
+    s223:hasAspect s223:Aspect-Minimum ;
+    qudt:hasUnit qudt:K ;
+    qudt:hasQuantityKind quantitykind:Temperature  ;
+    brick:hasLocation bldg:hvac_cor_zone ;
+    rdfs:label  "LowerSetp[cor]" .
+
+bldg:LowerSetp_eas a s223:QuantifiableProperty ;
+    s223:hasAspect s223:Aspect-Minimum ;
+    qudt:hasUnit qudt:K ;
+    qudt:hasQuantityKind quantitykind:Temperature  ;
+    brick:hasLocation bldg:hvac_eas_zone ;
+    rdfs:label  "LowerSetp[eas]" .
+
+bldg:LowerSetp_nor a s223:QuantifiableProperty ;
+    s223:hasAspect s223:Aspect-Minimum ;
+    qudt:hasUnit qudt:K ;
+    qudt:hasQuantityKind quantitykind:Temperature  ;
+    brick:hasLocation bldg:hvac_nor_zone ;
+    rdfs:label  "LowerSetp[nor]" .
+
+bldg:LowerSetp_sou a s223:QuantifiableProperty ;
+    s223:hasAspect s223:Aspect-Minimum ;
+    qudt:hasUnit qudt:K ;
+    qudt:hasQuantityKind quantitykind:Temperature  ;
+    brick:hasLocation bldg:hvac_sou_zone ;
+    rdfs:label  "LowerSetp[sou]" .
+
+bldg:UpperSetp_wes a s223:QuantifiableProperty ;
+    s223:hasAspect s223:Aspect-Maximum ;
+    qudt:hasUnit qudt:K ;
+    qudt:hasQuantityKind quantitykind:Temperature  ;
+    brick:hasLocation bldg:hvac_wes_zone ;
+    rdfs:label   "UpperSetp[wes]" .
+
+bldg:UpperSetp_cor a s223:QuantifiableProperty ;
+    s223:hasAspect s223:Aspect-Maximum ;
+    qudt:hasUnit qudt:K ;
+    qudt:hasQuantityKind quantitykind:Temperature  ;
+    brick:hasLocation bldg:hvac_cor_zone ;
+    rdfs:label  "UpperSetp[cor]" .
+
+bldg:UpperSetp_eas a s223:QuantifiableProperty ;
+    s223:hasAspect s223:Aspect-Maximum ;
+    qudt:hasUnit qudt:K ;
+    qudt:hasQuantityKind quantitykind:Temperature  ;
+    brick:hasLocation bldg:hvac_eas_zone ;
+    rdfs:label   "UpperSetp[eas]" .
+
+bldg:UpperSetp_nor a s223:QuantifiableProperty ;
+    s223:hasAspect s223:Aspect-Maximum ;
+    qudt:hasUnit qudt:K ;
+    qudt:hasQuantityKind quantitykind:Temperature  ;
+    brick:hasLocation bldg:hvac_nor_zone ;
+    rdfs:label   "UpperSetp[nor]" .
+
+bldg:UpperSetp_sou a s223:QuantifiableProperty ;
+    s223:hasAspect s223:Aspect-Maximum ;
+    qudt:hasUnit qudt:K ;
+    qudt:hasQuantityKind quantitykind:Temperature  ;
+    brick:hasLocation bldg:hvac_sou_zone ;
+    rdfs:label   "UpperSetp[sou]" .
+
+
+
+bldg:occ_wes a s223:QuantifiableObservableProperty ;
+    s223:hasAspect s223:EnumerationKind-Occupancy ; 
+    qudt:hasQuantityKind quantitykind:Population ;
+    qudt:hasUnit qudt:NUM ;  
+    rdfs:label   "Occupancy[wes]" .
+
+bldg:occ_cor a s223:QuantifiableObservableProperty ;
+    s223:hasAspect s223:EnumerationKind-Occupancy ; 
+    qudt:hasQuantityKind quantitykind:Population ;
+    qudt:hasUnit qudt:NUM ;  
+    rdfs:label   "Occupancy[cor]" .
+
+bldg:occ_eas a s223:QuantifiableObservableProperty ;
+    s223:hasAspect s223:EnumerationKind-Occupancy ; 
+    qudt:hasQuantityKind quantitykind:Population ;
+    qudt:hasUnit qudt:NUM ;  
+    rdfs:label  "Occupancy[eas]" .
+
+bldg:occ_nor a s223:QuantifiableObservableProperty ;
+    s223:hasAspect s223:EnumerationKind-Occupancy ; 
+    qudt:hasQuantityKind quantitykind:Population ;
+    qudt:hasUnit qudt:NUM ;  
+    rdfs:label   "Occupancy[nor]" .
+
+bldg:occ_sou a s223:QuantifiableObservableProperty ;
+    s223:hasAspect s223:EnumerationKind-Occupancy ; 
+    qudt:hasQuantityKind quantitykind:Population ;
+    qudt:hasUnit qudt:NUM ;  
+    rdfs:label   "Occupancy[sou]" .
