@@ -120,8 +120,7 @@ At the moment, we for sure want to keep an external Brick model file so we have 
 
 None of the models included in this repo are very complete just yet and are very much a work in progress.
 
-```
-    mermaid
+```mermaid
 graph TD;
     Brick Model -references-> BOPTest API Details;
     Brick Model -configure-> BACnet Objects;
