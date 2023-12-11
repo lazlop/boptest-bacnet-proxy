@@ -122,12 +122,12 @@ None of the models included in this repo are very complete just yet and are very
 
 ```mermaid
 graph TD
+    title Figure 1. Simple Diagram
+
     BrickModel --->|references| BOPTestAPIDetails
     BrickModel --->|configure| BACnetObjects
     BACnetObjects --->|populate| BACnetNetwork
     BACnetApplication --->|connectsTo| BACnetNetwork
-
-    title Figure 1. Simple Diagram
 ```
 
 
