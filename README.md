@@ -126,6 +126,7 @@ graph TD
     BrickModel --->|configure| BACnetObjects
     BACnetObjects --->|populate| BACnetNetwork
     BACnetApplication --->|connectsTo| BACnetNetwork
+
     title Figure 1. Simple Diagram
 ```
 
