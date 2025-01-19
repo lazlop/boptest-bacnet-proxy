@@ -48,10 +48,11 @@ def add_bacnet_ref(model, graph, id_counter, point, bacnet_type):
     graph.add((BLDG[ref_name], BACNET['object-name'], Literal(point_name)))
     graph.add((BLDG[ref_name], BACNET['objectOf'], BLDG['boptest-proxy']))
 
-    unit = model.value(point, QUDT.hasUnit)
-    unit_name = unit.rsplit('/')[-1]
+    # Not necessary
+    # unit = model.value(point, QUDT.hasUnit)
+    # unit_name = unit.rsplit('/')[-1]
 
-    graph.add((BLDG[ref_name], BACNET['units'],Literal(unit_name)))
+    # graph.add((BLDG[ref_name], BACNET['units'],Literal(unit_name)))
 
     graph.add((point, REF.hasExternalReference, BLDG[ref_name]))
 

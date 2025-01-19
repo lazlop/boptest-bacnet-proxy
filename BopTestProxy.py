@@ -89,6 +89,7 @@ class LocalAnalogValueObject(AnalogValueCmdObject):
         self.presentValue = value
 
 klassMapping = {'analog-value': LocalAnalogValueObject, 'analog-input': AnalogInputObject, 'analog-output': AnalogOutputCmdObject}
+unitMapping = {'http://qudt.org/vocab/unit/K': "degreesKelvin", 'http://qudt.org/vocab/unit/PPM': "partsPerMillion"}
 
 @bacpypes_debugging
 def create_objects(app, configfile):
@@ -99,7 +100,7 @@ def create_objects(app, configfile):
 
     g= rdflib.Graph()
     g.parse(configfile)
-    points = g.query("select ?point ?name ?bacnetRef ?unit where {?point ref:hasExternalReference ?bo . ?bo bacnet:object-identifier ?bacnetRef . ?bo bacnet:object-name ?name OPTIONAL {?point bacnet:units ?unit} }")
+    points = g.query("select ?point ?name ?bacnetRef ?unit where {?point ref:hasExternalReference ?bo . ?bo bacnet:object-identifier ?bacnetRef . ?bo bacnet:object-name ?name OPTIONAL {?point qudt:hasUnits ?unit} }")
     for point in points:
         rdfBacnetName = point[1]
         rdfBacnetRef = point[2]
@@ -112,7 +113,7 @@ def create_objects(app, configfile):
         name = str(rdfBacnetName)
         units = None
         if rdfBacnetUnit:
-            units = str(rdfBacnetUnit)
+            units = unitMapping[str(rdfBacnetUnit)]
         
         initialValue = None
         if name in nextState['payload']:
